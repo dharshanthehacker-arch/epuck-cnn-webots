@@ -1,0 +1,274 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Horse.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Dog.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Cat.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Deer.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/toys/protos/PaperBoat.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/toys/protos/RubberDuck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/vehicles/protos/toyota/ToyotaPriusMesh.proto"
+
+WorldInfo {
+  info [
+    "Assignment 3/4/5 - Project Part 2: CNN object classification in Webots."
+    "An e-puck sits in a miniature arena surrounded by CIFAR-10 style objects"
+    "(cars, horse, dog, cat, deer, birds, ship) and coloured blocks (0.3 x 0.3 x 0.1 m)."
+  ]
+  title "E-puck CNN Object World - evaluation tour"
+  basicTimeStep 32
+}
+DEF VIEWPOINT Viewpoint {
+  orientation -0.3535 0.3535 0.866 1.7178
+  position 0.03 -3.1 2.6
+}
+TexturedBackground {
+  texture "noon_cloudy_countryside"
+}
+TexturedBackgroundLight {
+  texture "noon_cloudy_countryside"
+}
+RectangleArena {
+  floorSize 3 3
+  floorTileSize 0.5 0.5
+  floorAppearance PBRAppearance {
+    baseColor 0.86 0.86 0.84
+    roughness 1
+    metalness 0
+  }
+  wallHeight 0.12
+  wallAppearance PBRAppearance {
+    baseColor 0.95 0.95 0.95
+    roughness 1
+    metalness 0
+  }
+}
+
+# ------------------------------------------------------------------
+# Miniature CIFAR-10 objects placed on a ring (radius ~1.15 m)
+# ------------------------------------------------------------------
+DEF CAR_RED Solid {
+  translation 1.15 0 0.0222
+  rotation 0 0 1 1.5708
+  children [
+    Transform {
+      scale 0.07 0.07 0.07
+      children [
+        Pose {
+          translation -1.4 0 0
+          children [
+            Pose {
+              rotation 0.57735 0.57735 0.57735 2.094395
+              children [
+                ToyotaPriusMesh {
+                  color 0.75 0.05 0.05
+                }
+              ]
+            }
+            DEF WHEEL_SHAPE Pose {
+              translation 2.8 -0.814 0
+              rotation 1 0 0 1.5708
+              children [
+                Shape {
+                  appearance DEF TYRE PBRAppearance { baseColor 0.05 0.05 0.05 roughness 0.9 metalness 0 }
+                  geometry DEF TYRE_GEOM Cylinder { height 0.21 radius 0.317 }
+                }
+              ]
+            }
+            Pose {
+              translation 2.8 0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+            Pose {
+              translation 0 -0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+            Pose {
+              translation 0 0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "mini car red"
+  model "automobile"
+  boundingObject Pose {
+    translation 0 0 0.035
+    children [ Box { size 0.33 0.13 0.08 } ]
+  }
+}
+DEF CAR_BLUE Solid {
+  translation 0.81 -0.81 0.0222
+  rotation 0 0 1 0.7854
+  children [
+    Transform {
+      scale 0.07 0.07 0.07
+      children [
+        Pose {
+          translation -1.4 0 0
+          children [
+            Pose {
+              rotation 0.57735 0.57735 0.57735 2.094395
+              children [
+                ToyotaPriusMesh {
+                  color 0.05 0.2 0.7
+                }
+              ]
+            }
+            Pose {
+              translation 2.8 -0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+            Pose {
+              translation 2.8 0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+            Pose {
+              translation 0 -0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+            Pose {
+              translation 0 0.814 0
+              rotation 1 0 0 1.5708
+              children [ Shape { appearance USE TYRE geometry USE TYRE_GEOM } ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "mini car blue"
+  model "automobile"
+  boundingObject Pose {
+    translation 0 0 0.035
+    children [ Box { size 0.33 0.13 0.08 } ]
+  }
+}
+DEF HORSE Horse {
+  translation 0.81 0.81 0
+  rotation 0 0 1 -0.7854
+  scale 0.11
+  name "mini horse"
+}
+DEF DOG Dog {
+  translation 0 1.15 0
+  rotation 0 0 1 0
+  scale 0.32
+  name "mini dog"
+}
+DEF SHIP PaperBoat {
+  translation -0.81 0.81 0.002
+  rotation 0 0 1 0.7854
+  scale 0.9
+  name "mini ship"
+}
+DEF BIRD_1 RubberDuck {
+  translation -1.15 0 0.0
+  rotation 0 0 1 0
+  scale 1.8
+  name "mini bird 1"
+}
+DEF BIRD_2 RubberDuck {
+  translation -1.25 -0.25 0.0
+  rotation 0 0 1 0.6
+  scale 1.2
+  bodyColor 0.95 0.95 0.95
+  name "mini bird 2"
+}
+DEF DEER Deer {
+  translation -0.81 -0.81 0
+  rotation 0 0 1 0.7854
+  scale 0.12
+  name "mini deer"
+}
+DEF CAT Cat {
+  translation 0 -1.15 0
+  rotation 0 0 1 3.1416
+  scale 0.5
+  name "mini cat"
+}
+
+# ------------------------------------------------------------------
+# Coloured blocks (0.3 x 0.3 x 0.1 m) on an inner ring (radius 0.62 m)
+# ------------------------------------------------------------------
+DEF RED_BLOCK Solid {
+  translation 0.573 0.237 0.05
+  rotation 0 0 1 0.3927
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.9 0.05 0.05 roughness 1 metalness 0 }
+      geometry DEF BLOCK_GEOM Box { size 0.3 0.3 0.1 }
+    }
+  ]
+  name "red block"
+  model "red block"
+  boundingObject USE BLOCK_GEOM
+}
+DEF GREEN_BLOCK Solid {
+  translation -0.237 0.573 0.05
+  rotation 0 0 1 0.3927
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.05 0.75 0.1 roughness 1 metalness 0 }
+      geometry Box { size 0.3 0.3 0.1 }
+    }
+  ]
+  name "green block"
+  model "green block"
+  boundingObject Box { size 0.3 0.3 0.1 }
+}
+DEF BLUE_BLOCK Solid {
+  translation -0.573 -0.237 0.05
+  rotation 0 0 1 0.3927
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.05 0.15 0.9 roughness 1 metalness 0 }
+      geometry Box { size 0.3 0.3 0.1 }
+    }
+  ]
+  name "blue block"
+  model "blue block"
+  boundingObject Box { size 0.3 0.3 0.1 }
+}
+DEF YELLOW_BLOCK Solid {
+  translation 0.237 -0.573 0.05
+  rotation 0 0 1 0.3927
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.95 0.85 0.05 roughness 1 metalness 0 }
+      geometry Box { size 0.3 0.3 0.1 }
+    }
+  ]
+  name "yellow block"
+  model "yellow block"
+  boundingObject Box { size 0.3 0.3 0.1 }
+}
+
+# ------------------------------------------------------------------
+# The robot: e-puck with an upgraded 320x240 camera
+# controllerArgs: "explore" (autonomous demo) or "tour" (capture + CNN test)
+# ------------------------------------------------------------------
+DEF EPUCK E-puck {
+  translation 0 0 0
+  rotation 0 0 1 0
+  controller "epuck_vision_cnn"
+  controllerArgs [
+    "tour"
+  ]
+  supervisor TRUE
+  camera_width 320
+  camera_height 240
+  camera_antiAliasing TRUE
+  camera_rotation 0 1 0 -0.12
+}
