@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+notebook/cifar10.npz
+notebook/run*_executed.ipynb
+notebook/.ipynb_checkpoints/
+captures/demo_frames/
+preview/
