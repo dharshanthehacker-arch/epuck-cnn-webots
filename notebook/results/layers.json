@@ -1,0 +1,212 @@
+[
+ {
+  "#": 1,
+  "layer": "Conv2D",
+  "name": "conv2d",
+  "output": "(32, 32, 32)",
+  "params": 864
+ },
+ {
+  "#": 2,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization",
+  "output": "(32, 32, 32)",
+  "params": 128
+ },
+ {
+  "#": 3,
+  "layer": "Activation",
+  "name": "activation",
+  "output": "(32, 32, 32)",
+  "params": 0
+ },
+ {
+  "#": 4,
+  "layer": "Conv2D",
+  "name": "conv2d_1",
+  "output": "(32, 32, 32)",
+  "params": 9216
+ },
+ {
+  "#": 5,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization_1",
+  "output": "(32, 32, 32)",
+  "params": 128
+ },
+ {
+  "#": 6,
+  "layer": "Activation",
+  "name": "activation_1",
+  "output": "(32, 32, 32)",
+  "params": 0
+ },
+ {
+  "#": 7,
+  "layer": "MaxPooling2D",
+  "name": "max_pooling2d",
+  "output": "(16, 16, 32)",
+  "params": 0
+ },
+ {
+  "#": 8,
+  "layer": "Dropout",
+  "name": "dropout",
+  "output": "(16, 16, 32)",
+  "params": 0
+ },
+ {
+  "#": 9,
+  "layer": "Conv2D",
+  "name": "conv2d_2",
+  "output": "(16, 16, 64)",
+  "params": 18432
+ },
+ {
+  "#": 10,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization_2",
+  "output": "(16, 16, 64)",
+  "params": 256
+ },
+ {
+  "#": 11,
+  "layer": "Activation",
+  "name": "activation_2",
+  "output": "(16, 16, 64)",
+  "params": 0
+ },
+ {
+  "#": 12,
+  "layer": "Conv2D",
+  "name": "conv2d_3",
+  "output": "(16, 16, 64)",
+  "params": 36864
+ },
+ {
+  "#": 13,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization_3",
+  "output": "(16, 16, 64)",
+  "params": 256
+ },
+ {
+  "#": 14,
+  "layer": "Activation",
+  "name": "activation_3",
+  "output": "(16, 16, 64)",
+  "params": 0
+ },
+ {
+  "#": 15,
+  "layer": "MaxPooling2D",
+  "name": "max_pooling2d_1",
+  "output": "(8, 8, 64)",
+  "params": 0
+ },
+ {
+  "#": 16,
+  "layer": "Dropout",
+  "name": "dropout_1",
+  "output": "(8, 8, 64)",
+  "params": 0
+ },
+ {
+  "#": 17,
+  "layer": "Conv2D",
+  "name": "conv2d_4",
+  "output": "(8, 8, 128)",
+  "params": 73728
+ },
+ {
+  "#": 18,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization_4",
+  "output": "(8, 8, 128)",
+  "params": 512
+ },
+ {
+  "#": 19,
+  "layer": "Activation",
+  "name": "activation_4",
+  "output": "(8, 8, 128)",
+  "params": 0
+ },
+ {
+  "#": 20,
+  "layer": "Conv2D",
+  "name": "conv2d_5",
+  "output": "(8, 8, 128)",
+  "params": 147456
+ },
+ {
+  "#": 21,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization_5",
+  "output": "(8, 8, 128)",
+  "params": 512
+ },
+ {
+  "#": 22,
+  "layer": "Activation",
+  "name": "activation_5",
+  "output": "(8, 8, 128)",
+  "params": 0
+ },
+ {
+  "#": 23,
+  "layer": "MaxPooling2D",
+  "name": "max_pooling2d_2",
+  "output": "(4, 4, 128)",
+  "params": 0
+ },
+ {
+  "#": 24,
+  "layer": "Dropout",
+  "name": "dropout_2",
+  "output": "(4, 4, 128)",
+  "params": 0
+ },
+ {
+  "#": 25,
+  "layer": "Flatten",
+  "name": "flatten",
+  "output": "(2048,)",
+  "params": 0
+ },
+ {
+  "#": 26,
+  "layer": "Dense",
+  "name": "dense",
+  "output": "(128,)",
+  "params": 262144
+ },
+ {
+  "#": 27,
+  "layer": "BatchNormalization",
+  "name": "batch_normalization_6",
+  "output": "(128,)",
+  "params": 512
+ },
+ {
+  "#": 28,
+  "layer": "Activation",
+  "name": "activation_6",
+  "output": "(128,)",
+  "params": 0
+ },
+ {
+  "#": 29,
+  "layer": "Dropout",
+  "name": "dropout_3",
+  "output": "(128,)",
+  "params": 0
+ },
+ {
+  "#": 30,
+  "layer": "Dense",
+  "name": "logits",
+  "output": "(10,)",
+  "params": 1290
+ }
+]

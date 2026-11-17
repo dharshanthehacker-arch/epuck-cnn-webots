@@ -1,0 +1,48 @@
+{
+ "test_acc": 0.8654999732971191,
+ "test_loss": 0.40620023012161255,
+ "params": 552298,
+ "epochs": 40,
+ "train_time_s": 1456.0552399158478,
+ "per_class": {
+  "airplane": 0.887,
+  "automobile": 0.95,
+  "bird": 0.773,
+  "cat": 0.668,
+  "deer": 0.849,
+  "dog": 0.794,
+  "frog": 0.962,
+  "horse": 0.894,
+  "ship": 0.933,
+  "truck": 0.945
+ },
+ "top_confusions": [
+  [
+   "cat",
+   "dog",
+   105
+  ],
+  [
+   "cat",
+   "frog",
+   91
+  ],
+  [
+   "dog",
+   "cat",
+   91
+  ],
+  [
+   "bird",
+   "frog",
+   68
+  ],
+  [
+   "deer",
+   "frog",
+   59
+  ]
+ ],
+ "baseline_test_acc": 0.6473000049591064,
+ "baseline_params": 122570
+}

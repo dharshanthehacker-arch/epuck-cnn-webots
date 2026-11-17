@@ -251,12 +251,16 @@ def run_tour(ctl: EpuckVisionController):
     vp_pos, vp_rot = vp.getField("position"), vp.getField("orientation")
 
     def view(eye, target, name, settle=6):
+        """Export a 3D-view screenshot; the camera is disabled so its overlay is hidden."""
+        ctl.camera.disable()
         vp_pos.setSFVec3f(list(eye))
         vp_rot.setSFRotation(look_at_rotation(eye, target))
         for _ in range(settle):
             ctl.step()
-        robot.exportImage(os.path.join(shots_dir, f"{name}.jpg"), 92)
-        ctl.step()
+        robot.exportImage(os.path.join(shots_dir, f"{name}.jpg"), 95)
+        for _ in range(3):
+            ctl.step()
+        ctl.camera.enable(ctl.dt)
 
     def place_robot(x, y, yaw):
         tr.setSFVec3f([x, y, 0.0])
@@ -269,6 +273,17 @@ def run_tour(ctl: EpuckVisionController):
     view((2.4, -2.4, 1.6), (0, 0, 0), "overview_corner")
     view((0.0, -0.05, 4.2), (0, 0, 0), "top_down")
     view((-0.35, -0.55, 0.32), (0.1, 0.4, 0.05), "robot_closeup")
+    view((-1.05, -1.35, 0.38), (0.35, 0.45, 0.02), "hero_low")
+    view((1.3, -0.2, 0.55), (-0.4, 0.3, 0.0), "hero_side")
+    if os.environ.get("SHOTS_ONLY"):
+        for def_name, truth, dist in TOUR_OBJECTS:          # close-ups of each object for the slides
+            node = robot.getFromDef(def_name)
+            ox, oy, _ = node.getPosition()
+            yaw = math.atan2(oy, ox)
+            view((ox - 0.55 * math.cos(yaw) + 0.2 * math.sin(yaw), oy - 0.55 * math.sin(yaw) - 0.2 * math.cos(yaw), 0.28),
+                 (ox, oy, 0.06), f"object_{def_name.lower()}")
+        robot.simulationQuit(0)
+        return
 
     # ---- 2. visit every object and classify the camera image with every backend
     backends = {b: CnnClassifier(b) for b in ("keras", "float32", "float16", "int8")}
