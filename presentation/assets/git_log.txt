@@ -1,3 +1,5 @@
+778385e Presentation: deck builder, assets and live status monitor
+a117bb6 Results: trained CNN + TFLite models, Webots tour captures and evaluation
 9c41053 Colab notebook: baseline vs improved CNN, evaluation, TFLite optimisation
 a31f1dd Controller: explore state machine and evaluation tour mode
 cb5d7eb CNN classifier: TFLite INT8 inference in an asynchronous worker thread

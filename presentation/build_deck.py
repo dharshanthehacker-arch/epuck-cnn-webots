@@ -160,9 +160,9 @@ notes(s, "Tip: replace this board with a screenshot of your own Trello board if 
 s = nxt()
 title(s, "Code management with Git and GitHub", "Methods · code management")
 short = lambda m: m if len(m) <= 46 else m[:45].rstrip() + "…"
-log_box = box(s, 0.6, 1.65, 6.7, 0.75 + 0.48 * len(GIT[:9]), fill=NAVY)
+log_box = box(s, 0.6, 1.65, 6.7, 0.95 + 0.33 * len(GIT[:9]), fill=NAVY)
 text(s, 0.9, 1.85, 6.2, 0.35, "$ git log --oneline", size=14, color=AMBER, font="Courier New", bold=True)
-text(s, 0.9, 2.3, 6.3, 0.48 * len(GIT[:9]), [[(l[:7] + "  ", {"color": AMBER}), (short(l[8:]), {"color": WHITE})] for l in GIT[:9]],
+text(s, 0.9, 2.3, 6.3, 0.33 * len(GIT[:9]), [[(l[:7] + "  ", {"color": AMBER}), (short(l[8:]), {"color": WHITE})] for l in GIT[:9]],
      size=13, font="Courier New", line_spacing=1.45)
 bullets(s, 7.6, 1.65, 5.1, 4.6, [
     ("One commit per feature: ", "world → colour detection → CNN classifier → controller → notebook → results."),
@@ -170,6 +170,13 @@ bullets(s, 7.6, 1.65, 5.1, 4.6, [
     (".gitignore ", "keeps the 180 MB dataset and generated frames out of the repo."),
     ("GitHub remote ", "for backup and submission; models are versioned with the code that produced them."),
 ], size=15, space=10)
+tree_y = 1.65 + 0.95 + 0.33 * len(GIT[:9]) + 0.25
+box(s, 0.6, tree_y, 6.7, 6.95 - tree_y)
+text(s, 0.9, tree_y + 0.15, 6.2, 0.35, "Repository layout", size=14, bold=True, color=TEAL)
+text(s, 0.9, tree_y + 0.5, 3.2, 6.85 - tree_y - 0.6, ["worlds/", "controllers/epuck_vision_cnn/", "notebook/ (Colab .ipynb)"],
+     size=12, font="Courier New", color=INK, line_spacing=1.3)
+text(s, 4.0, tree_y + 0.5, 3.2, 6.85 - tree_y - 0.6, ["captures/", "presentation/", "README.md"],
+     size=12, font="Courier New", color=INK, line_spacing=1.3)
 notes(s, "Push the local repository to your GitHub account: create an empty repo, then git remote add origin <url>; "
          "git push -u origin main.")
 
@@ -227,7 +234,7 @@ groups = [("Block 1", 0, 8, "2× Conv 3×3, 32 filters\nBN · ReLU · MaxPool ·
           ("Block 2", 8, 16, "2× Conv 3×3, 64 filters\nBN · ReLU · MaxPool · Dropout 0.3"),
           ("Block 3", 16, 24, "2× Conv 3×3, 128 filters\nBN · ReLU · MaxPool · Dropout 0.4"),
           ("Head", 24, len(LAYERS), "Flatten · Dense 128 · BN · ReLU\nDropout 0.5 · Dense 10 (logits)")]
-widths = [1.0, 0.86, 0.72, 0.58]
+widths = [1.0, 0.92, 0.84, 0.76]
 for j, (g, a, b_, d) in enumerate(groups):
     y = 1.7 + j * 1.25
     out = LAYERS[b_ - 1]["output"] if b_ - 1 < len(LAYERS) else ""
@@ -485,7 +492,7 @@ refs = [
     "Srivastava, N. et al. (2014) 'Dropout: a simple way to prevent neural networks from overfitting', JMLR, 15, pp. 1929–1958.",
     "Tobin, J. et al. (2017) 'Domain randomization for transferring deep neural networks from simulation to the real world', IROS, pp. 23–30.",
 ]
-text(s, 0.6, 1.55, 12.1, 5.4, [[(r, {})] for r in refs], size=13, color=INK, line_spacing=1.18)
+bullets(s, 0.6, 1.55, 12.1, 5.5, refs, size=13, space=6, bullet_color=TEAL)
 notes(s, "Harvard style. Every source is cited on a slide or in the report.")
 
 out = Path(__file__).parent / "CNN_Webots_Presentation.pptx"
