@@ -1,0 +1,6 @@
+9c41053 Colab notebook: baseline vs improved CNN, evaluation, TFLite optimisation
+a31f1dd Controller: explore state machine and evaluation tour mode
+cb5d7eb CNN classifier: TFLite INT8 inference in an asynchronous worker thread
+fef9d92 Colour detection: HSV segmentation with shape verification and object ROI
+c402875 World: miniature CIFAR-10 objects and 0.3x0.3x0.1 m colour blocks around the e-puck
+9e6b18d Project skeleton: README, launcher and ignore rules
