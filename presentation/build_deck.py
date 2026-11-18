@@ -139,18 +139,10 @@ notes(s, "Each objective is measurable, and each result here is taken directly f
 
 # ======================================================================= 5. Project management
 s = nxt()
-title(s, "Project management: Kanban board and milestones", "Methods · project management")
-cols = [("Done", TEAL, ["Part 1 colour-block search", "Arena world + miniature objects", "Baseline cnn_v3 (SGD→Adam)",
-                         "Improved CNN + augmentation", "TFLite float/INT8 export", "Async CNN controller"]),
-        ("In review", AMBER, ["Webots tour evaluation", "Presentation (18 Nov)"]),
-        ("To do", MUTED, ["Final report (21 Nov)", "Webots code package (21 Nov)", "Pruning experiment"])]
-for ci, (name, colr, cards) in enumerate(cols):
-    x = 0.6 + ci * 2.75
-    box(s, x, 1.65, 2.55, 4.95, fill=PANEL)
-    text(s, x + 0.2, 1.78, 2.2, 0.4, name, size=15, bold=True, color=colr)
-    for j, c in enumerate(cards):
-        b = box(s, x + 0.15, 2.25 + j * 0.71, 2.25, 0.6, fill=WHITE, line=LINE)
-        shape_text(b, c, size=12, color=INK, align=PP_ALIGN.LEFT)
+title(s, "Project management: our Trello board", "Methods · project management")
+image(s, ASSETS / "trello_board.png", 0.6, 1.55, 8.1, 4.95)
+text(s, 0.6, 6.6, 8.1, 0.35, "Live board: trello.com/b/2ao7fOlv  ·  Done 8  ·  In review 2  ·  To do 3", size=12,
+     italic=True, color=MUTED, align=PP_ALIGN.CENTER)
 text(s, 9.1, 1.65, 3.6, 0.4, "Milestones", size=18, bold=True, color=NAVY)
 ms = [("10 Nov", "Part 1 interim report"), ("17 Nov", "CNN trained, Webots tour"), ("18 Nov", "Presentation (A3)"),
       ("21 Nov", "Report + Webots code (A4/A5)")]
@@ -159,33 +151,29 @@ for j, (d, t) in enumerate(ms):
     circle_num(s, 9.1, y, 0.42, "", fill=TEAL if j < 2 else AMBER)
     text(s, 9.7, y - 0.04, 3.0, 0.3, d, size=14, bold=True, color=INK)
     text(s, 9.7, y + 0.27, 3.0, 0.4, t, size=13, color=MUTED)
-text(s, 9.1, 6.2, 3.6, 0.5, "Board kept in Trello (Done / In review / To do)", size=12, italic=True, color=MUTED)
-notes(s, "Tip: replace this board with a screenshot of your own Trello board if you have one. "
-         "Workflow: weekly sprints, one card per deliverable, cards moved when the code is committed.")
+box(s, 9.1, 6.15, 3.6, 0.65, fill=TEAL_LT, shadow=False)
+text(s, 9.25, 6.2, 3.4, 0.55, "Kanban workflow: one card per deliverable, moved when the code is committed.",
+     size=12, color=INK)
+notes(s, "Our real Trello board (Kanban): Done / In review / To do. Each card is a deliverable; cards move when the matching commit lands on GitHub.")
 
 # ======================================================================= 6. Code management
 s = nxt()
 title(s, "Code management with Git and GitHub", "Methods · code management")
-short = lambda m: m if len(m) <= 46 else m[:45].rstrip() + "…"
-log_box = box(s, 0.6, 1.65, 6.7, 0.95 + 0.33 * len(GIT[:9]), fill=NAVY)
-text(s, 0.9, 1.85, 6.2, 0.35, "$ git log --oneline", size=14, color=AMBER, font="Courier New", bold=True)
-text(s, 0.9, 2.3, 6.3, 0.33 * len(GIT[:9]), [[(l[:7] + "  ", {"color": AMBER}), (short(l[8:]), {"color": WHITE})] for l in GIT[:9]],
-     size=13, font="Courier New", line_spacing=1.45)
-bullets(s, 7.6, 1.65, 5.1, 4.6, [
-    ("One commit per feature: ", "world → colour detection → CNN classifier → controller → notebook → results."),
-    ("Modular repo: ", "worlds/, controllers/, notebook/, captures/, README with setup and hardware notes."),
-    (".gitignore ", "keeps the 180 MB dataset and generated frames out of the repo."),
-    ("GitHub remote ", "for backup and submission; models are versioned with the code that produced them."),
-], size=15, space=10)
-tree_y = 1.65 + 0.95 + 0.33 * len(GIT[:9]) + 0.25
-box(s, 0.6, tree_y, 6.7, 6.95 - tree_y)
-text(s, 0.9, tree_y + 0.15, 6.2, 0.35, "Repository layout", size=14, bold=True, color=TEAL)
-text(s, 0.9, tree_y + 0.5, 3.2, 6.85 - tree_y - 0.6, ["worlds/", "controllers/epuck_vision_cnn/", "notebook/ (Colab .ipynb)"],
-     size=12, font="Courier New", color=INK, line_spacing=1.3)
-text(s, 4.0, tree_y + 0.5, 3.2, 6.85 - tree_y - 0.6, ["captures/", "presentation/", "README.md"],
-     size=12, font="Courier New", color=INK, line_spacing=1.3)
-notes(s, "Push the local repository to your GitHub account: create an empty repo, then git remote add origin <url>; "
-         "git push -u origin main.")
+image(s, ASSETS / "github_repo.png", 0.6, 1.55, 7.9, 3.36)
+text(s, 0.6, 5.05, 7.9, 0.35, "github.com/dharshanthehacker-arch/epuck-cnn-webots  ·  public repository",
+     size=13, bold=True, color=TEAL, align=PP_ALIGN.CENTER)
+short = lambda m: m if len(m) <= 60 else m[:59].rstrip() + "…"
+box(s, 0.6, 5.55, 7.9, 1.3, fill=NAVY)
+text(s, 0.85, 5.65, 7.5, 1.15, [[(l[:7] + "  ", {"color": AMBER}), (short(l[8:]), {"color": WHITE})] for l in GIT[:4]],
+     size=11.5, font="Courier New", line_spacing=1.2)
+bullets(s, 8.9, 1.6, 3.85, 5.2, [
+    ("One commit per feature: ", "world → detection → CNN → controller → notebook → results."),
+    ("Modular repo: ", "worlds/, controllers/, notebook/, captures/, presentation/."),
+    ("README ", "covers setup, e-puck hardware notes and the macOS launcher."),
+    (".gitignore ", "keeps the 180 MB dataset and generated frames out."),
+    ("Models versioned ", "with the code that produced them."),
+], size=14, space=10)
+notes(s, "Live public repository on GitHub. Show the commit history: each feature landed as its own commit.")
 
 section("02", "Methods: world, pipeline & CNN", "A miniature CIFAR-10 world in Webots, a train-off-robot / infer-on-robot pipeline, and the network itself.",
         CAP / "scene/object_horse.jpg")
