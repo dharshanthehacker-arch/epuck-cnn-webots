@@ -1,3 +1,4 @@
+e2a0ee9 Re-run evaluation on the chessboard arena; keep plain-floor results for comparison
 1149920 World: use the default Webots chequered (chessboard) arena floor
 ecd6c99 Presentation: final styled deck (gradients, dividers, hero title)
 778385e Presentation: deck builder, assets and live status monitor
