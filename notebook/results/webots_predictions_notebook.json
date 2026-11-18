@@ -1,125 +1,5 @@
 [
  {
-  "file": "bird_1__bird.png",
-  "truth": "bird",
-  "pred": "bird",
-  "conf": 0.9950843453407288,
-  "top3": [
-   [
-    "bird",
-    0.9950843453407288
-   ],
-   [
-    "airplane",
-    0.0035149389877915382
-   ],
-   [
-    "frog",
-    0.0003632108273450285
-   ]
-  ]
- },
- {
-  "file": "car_blue__automobile.png",
-  "truth": "automobile",
-  "pred": "automobile",
-  "conf": 0.9130867123603821,
-  "top3": [
-   [
-    "automobile",
-    0.9130867123603821
-   ],
-   [
-    "airplane",
-    0.050376370549201965
-   ],
-   [
-    "ship",
-    0.0327700600028038
-   ]
-  ]
- },
- {
-  "file": "car_red__automobile.png",
-  "truth": "automobile",
-  "pred": "airplane",
-  "conf": 0.8226549625396729,
-  "top3": [
-   [
-    "airplane",
-    0.8226549625396729
-   ],
-   [
-    "automobile",
-    0.13785679638385773
-   ],
-   [
-    "ship",
-    0.03736948221921921
-   ]
-  ]
- },
- {
-  "file": "cat__cat.png",
-  "truth": "cat",
-  "pred": "horse",
-  "conf": 0.9847091436386108,
-  "top3": [
-   [
-    "horse",
-    0.9847091436386108
-   ],
-   [
-    "deer",
-    0.011141887865960598
-   ],
-   [
-    "bird",
-    0.0020762395579367876
-   ]
-  ]
- },
- {
-  "file": "deer__deer.png",
-  "truth": "deer",
-  "pred": "airplane",
-  "conf": 0.42652425169944763,
-  "top3": [
-   [
-    "airplane",
-    0.42652425169944763
-   ],
-   [
-    "horse",
-    0.38177716732025146
-   ],
-   [
-    "bird",
-    0.10545774549245834
-   ]
-  ]
- },
- {
-  "file": "dog__dog.png",
-  "truth": "dog",
-  "pred": "deer",
-  "conf": 0.49882200360298157,
-  "top3": [
-   [
-    "deer",
-    0.49882200360298157
-   ],
-   [
-    "horse",
-    0.3781532049179077
-   ],
-   [
-    "bird",
-    0.06860582530498505
-   ]
-  ]
- },
- {
   "file": "horse__horse.png",
   "truth": "horse",
   "pred": "horse",
@@ -140,22 +20,22 @@
   ]
  },
  {
-  "file": "ship__ship.png",
-  "truth": "ship",
-  "pred": "airplane",
-  "conf": 0.9325640201568604,
+  "file": "car_blue__automobile.png",
+  "truth": "automobile",
+  "pred": "automobile",
+  "conf": 0.9130867123603821,
   "top3": [
    [
-    "airplane",
-    0.9325640201568604
+    "automobile",
+    0.9130867123603821
    ],
    [
-    "bird",
-    0.038495827466249466
+    "airplane",
+    0.050376370549201965
    ],
    [
     "ship",
-    0.018535472452640533
+    0.0327700600028038
    ]
   ]
  }

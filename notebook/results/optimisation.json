@@ -1,22 +1,22 @@
 {
  "Keras (float32)": {
   "size_mb": 2.209192,
-  "latency_ms": 5.42382639,
+  "latency_ms": 4.950951110000001,
   "acc": 0.8654999732971191
  },
  "TFLite float32": {
   "size_mb": 2.208024,
-  "latency_ms": 0.5157591666666642,
+  "latency_ms": 0.5131283333333295,
   "acc": 0.8655
  },
  "TFLite float16": {
   "size_mb": 1.108784,
-  "latency_ms": 0.5192866666666756,
+  "latency_ms": 0.5187288899999961,
   "acc": 0.8655
  },
  "TFLite int8": {
   "size_mb": 0.569576,
-  "latency_ms": 0.17236375000000712,
+  "latency_ms": 0.17501847333332896,
   "acc": 0.8664
  }
 }
