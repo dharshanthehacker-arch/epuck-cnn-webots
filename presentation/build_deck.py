@@ -27,6 +27,13 @@ base = M["baseline_test_acc"] * 100
 objs = TOUR["objects"]
 tour_ok = sum(o["int8"]["pred"] == o["truth"] for o in objs)
 tour_ok_centre = sum(o["keras_centre_crop"]["pred"] == o["truth"] for o in objs)
+PLAIN = J(CAP / "plain_floor_run/tour_results.json")["objects"]
+plain_ok = sum(o["int8"]["pred"] == o["truth"] for o in PLAIN)
+NICE = {"CAR_RED": "red car", "CAR_BLUE": "blue car", "HORSE": "horse", "DOG": "dog", "CAT": "cat",
+        "DEER": "deer", "BIRD_1": "duck (bird)", "SHIP": "paper boat"}
+right_list = ", ".join(NICE[o["object"]] for o in objs if o["int8"]["pred"] == o["truth"])
+wrong_list = ", ".join(f"{NICE[o['object']]} → {o['int8']['pred']}" for o in objs if o["int8"]["pred"] != o["truth"])
+flipped = [NICE[o["object"]] for o, p in zip(objs, PLAIN) if (o["int8"]["pred"] == o["truth"]) != (p["int8"]["pred"] == p["truth"])]
 k, i8 = OPT["Keras (float32)"], OPT["TFLite int8"]
 speedup = k["latency_ms"] / i8["latency_ms"]
 f32 = OPT["TFLite float32"]
@@ -346,11 +353,12 @@ image(s, grid, 0.6, 1.55, 8.3, 5.35)
 box(s, 9.25, 1.65, 3.5, 1.9, fill=NAVY)
 text(s, 9.45, 1.75, 3.2, 0.9, f"{tour_ok}/{len(objs)}", size=44, bold=True, color=WHITE, font=HEAD)
 text(s, 9.45, 2.65, 3.2, 0.85, "Webots objects classified correctly (INT8 model on ROI crop)", size=13, color=LINE)
-text(s, 9.25, 3.75, 3.5, 3.2, [[("Correct: ", {"bold": True, "color": TEAL}), ("both cars, horse, bird.", {})],
-     [("Wrong: ", {"bold": True, "color": RED}), ("dog → deer, cat → horse, deer and paper boat → airplane (seen against the sky).", {})],
-     [("Why: ", {"bold": True}), ("domain gap. Low-angle renders of toy models are not CIFAR photos. ", {}),
-      (f"A centre crop gives the same {tour_ok_centre}/{len(objs)}, so cropping is not the cause.", {})]],
-     size=13, color=INK)
+text(s, 9.25, 3.7, 3.5, 3.3, [[("Correct: ", {"bold": True, "color": TEAL}), (right_list + ".", {})],
+     [("Wrong: ", {"bold": True, "color": RED}), (wrong_list + ".", {})],
+     [("Background matters: ", {"bold": True}), (f"plain floor {plain_ok}/{len(PLAIN)} vs chessboard {tour_ok}/{len(objs)}"
+      + (f" ({', '.join(flipped)} flipped)." if flipped else "."), {})],
+     [("Why: ", {"bold": True}), ("domain gap. Low-angle renders of toy models are not CIFAR photos.", {})]],
+     size=12.5, color=INK)
 notes(s, "Each tile is a real e-puck camera frame. Green = correct, red = wrong. The white square is the ROI the CNN sees.")
 
 # ======================================================================= 14. Colour detection demo
@@ -429,7 +437,7 @@ good = [f"Improved CNN reaches {acc:.1f}% on CIFAR-10 (+{acc-base:.1f} pts over 
         f"INT8 TFLite: {speedup:.1f}× faster and {shrink:.1f}× smaller with ≈ no accuracy loss.",
         "Asynchronous, event-triggered inference keeps the 32 ms control loop on time.",
         "Shape-verified HSV detection finds all blocks and ignores coloured look-alikes."]
-bad = ["Sim-to-real (domain) gap: renders and toy models differ from CIFAR photos.",
+bad = ["Sim-to-real (domain) gap: renders, toy models, even the floor pattern shift predictions.",
        f"Webots camera accuracy {tour_ok}/{len(objs)} vs {acc:.0f}% on the test set; similar animals get confused.",
        "Classification only: one label per crop, no boxes for several objects.",
        "No 'block' class: the CNN labels colour blocks as 'ship', so HSV must stay in charge."]
@@ -470,7 +478,7 @@ concl = [f"Built and trained a CIFAR-10 CNN off-robot: {acc:.1f}% test accuracy,
          "Demonstrated shape-verified colour-block detection in a miniature Webots world.",
          "Next: object detection (SSD / region proposals), Webots-generated training data, pruning."]
 bullets(s, 0.6, 1.7, 7.0, 5.0, concl, size=17, color=WHITE, space=14, bullet_color=AMBER)
-image(s, CAP / "tour/car_red__automobile_annotated.png", 8.0, 1.75, 4.75, 3.56)
+image(s, CAP / "tour/horse__horse_annotated.png", 8.0, 1.75, 4.75, 3.56)
 text(s, 8.0, 5.45, 4.75, 0.9, "Thank you · Questions?", size=26, bold=True, color=AMBER, align=PP_ALIGN.CENTER)
 notes(s, "Wrap up against the aims, then take questions.")
 

@@ -1,3 +1,5 @@
+1149920 World: use the default Webots chequered (chessboard) arena floor
+ecd6c99 Presentation: final styled deck (gradients, dividers, hero title)
 778385e Presentation: deck builder, assets and live status monitor
 a117bb6 Results: trained CNN + TFLite models, Webots tour captures and evaluation
 9c41053 Colab notebook: baseline vs improved CNN, evaluation, TFLite optimisation

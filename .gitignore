@@ -6,3 +6,4 @@ notebook/run*_executed.ipynb
 notebook/.ipynb_checkpoints/
 captures/demo_frames/
 preview/
+presentation/render.sh

@@ -38,7 +38,7 @@ scenes = sorted(glob.glob(str(CAP / "demo_frames/scene_*.jpg")))
 small = [cv.resize(cv.imread(p, cv.IMREAD_GRAYSCALE), (96, 64)).astype(np.int16) for p in scenes]
 diffs = [np.abs(small[i] - small[i - 1]).mean() for i in range(1, len(small))]
 end = len(scenes)
-for i in range(len(diffs) - 40):
+for i in range(60, len(diffs) - 40):        # skip the first ~8 s (robot settling at start)
     if max(diffs[i:i + 40]) < 0.15:
         end = min(len(scenes), i + 16)
         break

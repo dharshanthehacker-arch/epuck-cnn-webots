@@ -34,17 +34,7 @@ TexturedBackgroundLight {
 RectangleArena {
   floorSize 3 3
   floorTileSize 0.5 0.5
-  floorAppearance PBRAppearance {
-    baseColor 0.86 0.86 0.84
-    roughness 1
-    metalness 0
-  }
   wallHeight 0.12
-  wallAppearance PBRAppearance {
-    baseColor 0.95 0.95 0.95
-    roughness 1
-    metalness 0
-  }
 }
 
 # ------------------------------------------------------------------
