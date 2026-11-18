@@ -1,3 +1,5 @@
+221bbb4 Presentation: real Trello board and GitHub repository screenshots
+0b7cf1f Presentation: chessboard arena images and updated results
 e2a0ee9 Re-run evaluation on the chessboard arena; keep plain-floor results for comparison
 1149920 World: use the default Webots chequered (chessboard) arena floor
 ecd6c99 Presentation: final styled deck (gradients, dividers, hero title)
@@ -8,4 +10,3 @@ a31f1dd Controller: explore state machine and evaluation tour mode
 cb5d7eb CNN classifier: TFLite INT8 inference in an asynchronous worker thread
 fef9d92 Colour detection: HSV segmentation with shape verification and object ROI
 c402875 World: miniature CIFAR-10 objects and 0.3x0.3x0.1 m colour blocks around the e-puck
-9e6b18d Project skeleton: README, launcher and ignore rules
